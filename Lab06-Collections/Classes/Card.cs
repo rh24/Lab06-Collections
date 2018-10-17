@@ -15,12 +15,15 @@ namespace Lab06_Collections.Classes
 {
     public class Card
     {
-        enum CardSuits
-        {
-            Heart,
-            Diamond,
-            Spade,
-            Club
-        }
+        public object Value { get; set; }
+        public string Suit { get; set; }
+    }
+
+    enum CardSuits
+    {
+        Diamond,
+        Club,
+        Heart,
+        Spade,
     }
 }
