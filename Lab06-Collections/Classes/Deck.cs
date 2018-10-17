@@ -46,9 +46,22 @@ namespace Lab06_Collections.Classes
             }
         }
 
-        public string ReturnSuit(Card card)
+        public T[] ReturnSuit(T card)
         {
-            return card.Suit;
+            Type t = card.GetType();
+            PropertyInfo value = t.GetProperty("Value");
+            PropertyInfo suit = t.GetProperty("Suit");
+            T[] cardsOfSameSuit = new T[cards.Length];
+
+            for (int i = 0; i < cards.Length; i++)
+            {
+                Type cT = cards[i].GetType();
+                PropertyInfo cVal = t.GetProperty("Value");
+                PropertyInfo cSuit = t.GetProperty("Suit");
+                if (cSuit == suit) cardsOfSameSuit[i] = cards[i];
+            }
+
+            return cardsOfSameSuit;
         }
 
         public IEnumerator<T> GetEnumerator()
