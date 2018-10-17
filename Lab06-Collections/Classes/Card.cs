@@ -17,6 +17,11 @@ namespace Lab06_Collections.Classes
     {
         public object Value { get; set; }
         public string Suit { get; set; }
+
+        public Card(string suit, object value)
+        {
+            Suit = suit;
+        }
     }
 
     enum CardSuits

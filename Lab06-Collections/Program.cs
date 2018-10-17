@@ -1,4 +1,5 @@
 ﻿using System;
+using Lab06_Collections.Classes;
 
 namespace Lab06_Collections
 {
@@ -7,6 +8,9 @@ namespace Lab06_Collections
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            Card card = new Card();
+            card.Suit = 0;
         }
     }
 }

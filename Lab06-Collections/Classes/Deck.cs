@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace Lab06_Collections.Classes
 {
@@ -27,12 +27,28 @@ namespace Lab06_Collections.Classes
 
         public void RemoveFromDeck(T card)
         {
+            Type t = card.GetType();
+            PropertyInfo value = t.GetProperty("Value");
+            PropertyInfo suit = t.GetProperty("Suit");
 
+            for (int i = 0; i < cards.Length; i++)
+            {
+                Type tDeck = cards[i].GetType();
+                PropertyInfo deckVal = tDeck.GetProperty("Value");
+                PropertyInfo deckSuit = tDeck.GetProperty("Suit");
+
+                // if property of generic type object == property of generic type in card deck
+                if (value == deckVal)
+                {
+                    if (suit == deckSuit) continue;
+                    else cards[i] = card;
+                }
+            }
         }
 
-        public string ReturnSuit(T card)
+        public string ReturnSuit(Card card)
         {
-            return card.CardSuit;
+            return card.Suit;
         }
 
         public IEnumerator<T> GetEnumerator()
