@@ -37,7 +37,7 @@ namespace Lab06_Collections.Classes
 
         public IEnumerator<T> GetEnumerator()
         {
-            // the underlying loop that will allows foreach loop to run
+            // the underlying loop that allows foreach loop to run
             for (int i = 0; i < count; i++)
             {
                 // what does this yield to?
