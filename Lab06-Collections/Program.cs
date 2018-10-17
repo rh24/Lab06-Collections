@@ -9,8 +9,9 @@ namespace Lab06_Collections
         {
             Console.WriteLine("Hello World!");
 
-            Card card = new Card();
-            card.Suit = 0;
+            Card card = new Card("Heart", 3);
+
+            Console.WriteLine($"Suit: {card.Suit}, Value: {card.Value}");
         }
     }
 }

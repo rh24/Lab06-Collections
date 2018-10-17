@@ -21,6 +21,7 @@ namespace Lab06_Collections.Classes
         public Card(string suit, object value)
         {
             Suit = suit;
+            Value = value;
         }
     }
 
