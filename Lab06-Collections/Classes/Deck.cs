@@ -33,30 +33,16 @@ namespace Lab06_Collections.Classes
 
             for (int i = 0; i < cards.Length; i++)
             {
-                bool equalValues = value.GetValue(card) == value.GetValue(cards[i]);
-                bool equalSuits = suit.GetValue(card) == suit.GetValue(cards[i]);
+                bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+                bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
 
                 // if property of generic type object == property of generic type in card deck
-                if (!equalValues && !equalSuits) cards[i] = card;
-                else continue;
+                if (equalValues && equalSuits)
+                {
+                    cards.SetValue(null, i);
+                    Console.WriteLine("Yay the strings are equal!");
+                }
             }
-
-
-
-            //for (int i = 0; i < cards.Length; i++)
-            //{
-            //    Type tDeck = cards[i].GetType();
-            //    PropertyInfo deckVal = tDeck.GetProperty("Value");
-            //    PropertyInfo deckSuit = tDeck.GetProperty("Suit");
-
-            //    /// yayyyyyy
-            //    Console.WriteLine(deckSuit.GetValue(cards[i]));
-            //    if (!cards[i].Equals(card))
-            //    {
-            //        cards.SetValue(null, i);
-            //    }
-            //    else cards[i] = card;
-            //}
 
             return cards;
         }
