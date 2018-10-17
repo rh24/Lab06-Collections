@@ -17,20 +17,21 @@ namespace Lab06_Collections
 
             List<Card> cardsToAdd = new List<Card> { card2, card3, card4, card5 };
 
-            Console.WriteLine($"Suit: {card2.Suit}, Value: {card2.Value}");
+            //Console.WriteLine($"Suit: {card2.Suit}, Value: {card2.Value}");
 
             Deck<Card> deckOfCards = new Deck<Card>();
 
             foreach (var card in cardsToAdd)
             {
+                //Console.WriteLine($"{card.Value.ToString()} of {card.Suit.ToString()}");
                 deckOfCards.AddToDeck(card);
             }
 
-            deckOfCards.RemoveFromDeck(card2);
+            deckOfCards.RemoveFromDeck(card3);
 
-            foreach (var cardInDeck in deckOfCards)
+            foreach (var cardInDeck in deckOfCards.RemoveFromDeck(card3))
             {
-                Console.WriteLine($"{cardInDeck.Value.ToString()} of {cardInDeck.Suit.ToString()}");
+                //if (cardInDeck != null) Console.WriteLine($"{cardInDeck.Value.ToString()} of {cardInDeck.Suit.ToString()}");
             }
         }
     }

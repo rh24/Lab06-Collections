@@ -12,7 +12,7 @@ namespace Lab06_Collections.Classes
         // Remove
         // Return suit
 
-        T[] cards = new T[52];
+        T[] cards = new T[4];
         int count = 0;
 
         public void AddToDeck(T card)
@@ -25,7 +25,7 @@ namespace Lab06_Collections.Classes
             cards[count++] = card;
         }
 
-        public void RemoveFromDeck(T card)
+        public T[] RemoveFromDeck(T card)
         {
             Type t = card.GetType();
             PropertyInfo value = t.GetProperty("Value");
@@ -33,17 +33,32 @@ namespace Lab06_Collections.Classes
 
             for (int i = 0; i < cards.Length; i++)
             {
-                Type tDeck = cards[i].GetType();
-                PropertyInfo deckVal = tDeck.GetProperty("Value");
-                PropertyInfo deckSuit = tDeck.GetProperty("Suit");
+                bool equalValues = value.GetValue(card) == value.GetValue(cards[i]);
+                bool equalSuits = suit.GetValue(card) == suit.GetValue(cards[i]);
 
                 // if property of generic type object == property of generic type in card deck
-                if (value == deckVal)
-                {
-                    if (suit == deckSuit) continue;
-                    else cards[i] = card;
-                }
+                if (!equalValues && !equalSuits) cards[i] = card;
+                else continue;
             }
+
+
+
+            //for (int i = 0; i < cards.Length; i++)
+            //{
+            //    Type tDeck = cards[i].GetType();
+            //    PropertyInfo deckVal = tDeck.GetProperty("Value");
+            //    PropertyInfo deckSuit = tDeck.GetProperty("Suit");
+
+            //    /// yayyyyyy
+            //    Console.WriteLine(deckSuit.GetValue(cards[i]));
+            //    if (!cards[i].Equals(card))
+            //    {
+            //        cards.SetValue(null, i);
+            //    }
+            //    else cards[i] = card;
+            //}
+
+            return cards;
         }
 
         public T[] ReturnSuit(T card)
@@ -53,12 +68,18 @@ namespace Lab06_Collections.Classes
             PropertyInfo suit = t.GetProperty("Suit");
             T[] cardsOfSameSuit = new T[cards.Length];
 
+            int counter = 0;
+
             for (int i = 0; i < cards.Length; i++)
             {
                 Type cT = cards[i].GetType();
                 PropertyInfo cVal = t.GetProperty("Value");
                 PropertyInfo cSuit = t.GetProperty("Suit");
-                if (cSuit == suit) cardsOfSameSuit[i] = cards[i];
+                if (cSuit == suit)
+                {
+                    cardsOfSameSuit[counter] = cards[i];
+                    counter++;
+                }
             }
 
             return cardsOfSameSuit;
