@@ -15,6 +15,10 @@ namespace Lab06_Collections.Classes
         T[] cards = new T[4];
         int count = 0;
 
+        /// <summary>
+        /// This method ads a card instance to the T[] cards within this generic class.
+        /// </summary>
+        /// <param name="card">Card instance to add</param>
         public void AddToDeck(T card)
         {
             if (count == cards.Length)
@@ -25,33 +29,11 @@ namespace Lab06_Collections.Classes
             cards[count++] = card;
         }
 
-        /*
-        public T[] RemoveFromDeck(T card)
-        {
-            Type t = card.GetType();
-            PropertyInfo value = t.GetProperty("Value");
-            PropertyInfo suit = t.GetProperty("Suit");
-
-            for (int i = 0; i < cards.Length; i++)
-            {
-                bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
-                bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
-
-                Console.WriteLine(value.GetValue(card).ToString() + value.GetValue(cards[i]).ToString());
-                Console.WriteLine(suit.GetValue(card).ToString() + suit.GetValue(cards[i]).ToString());
-
-                // if property of generic type object == property of generic type in card deck
-                if (equalValues && equalSuits)
-                {
-                    cards.SetValue(null, i);
-                    Console.WriteLine("Yay the strings are equal!");
-                }
-            }
-
-            return cards;
-        }
-        */
-
+        /// <summary>
+        /// This method removes a card from the deck.
+        /// </summary>
+        /// <param name="card">Card instance to remove</param>
+        /// <returns>Deck of cards without the removed card</returns>
         public T[] RemoveFromDeck(Card card)
         {
             Type t = card.GetType();
@@ -60,22 +42,24 @@ namespace Lab06_Collections.Classes
 
             for (int i = 0; i < cards.Length; i++)
             {
-                bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
-                bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
-                //Console.WriteLine(value.GetValue(card).ToString() + value.GetValue(cards[i]).ToString());
-                //Console.WriteLine(suit.GetValue(card).ToString() + suit.GetValue(cards[i]).ToString());
-
-                // if property of generic type object == property of generic type in card deck
-                if (equalValues && equalSuits)
+                if (cards[i] != null)
                 {
-                    cards.SetValue(null, i);
-                    Console.WriteLine("Yay the strings are equal!");
+                    bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+                    bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+
+                    // if property of generic type object == property of generic type in card deck
+                    if (equalValues && equalSuits) cards.SetValue(null, i);
                 }
             }
 
             return cards;
         }
 
+        /// <summary>
+        /// This method returns an array of a generic type. 
+        /// </summary>
+        /// <param name="card">Card instance to remove</param>
+        /// <returns>Array of generic objects</returns>
         public T[] ReturnSuit(T card)
         {
             Type t = card.GetType();
