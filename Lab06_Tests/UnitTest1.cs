@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using Lab06_Collections.Classes;
 using System.Collections.Generic;
+using System.Linq;
 
 //Tests
 //Your tests should cover the following functionality:
@@ -23,17 +24,13 @@ namespace Lab06_Tests
         public static Card card7 = new Card(CardSuits.Diamonds, CardValues.Queen);
         public static Card card8 = new Card(CardSuits.Diamonds, CardValues.King);
 
-        List<Card> cards = new List<Card> { card2, card3, card4, card5, card6, card7, card8 };
+        public static List<Card> cards = new List<Card> { card2, card3, card4, card5, card6, card7, card8 };
 
         Deck<Card> deckOfCards = new Deck<Card>();
 
         [Fact]
-        public void Test1()
+        public void RemoveFromDeck()
         {
-            foreach (var card in cards)
-            {
-                deckOfCards.AddToDeck(card);
-            }
         }
     }
 }

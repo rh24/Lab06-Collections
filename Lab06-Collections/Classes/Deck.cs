@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace Lab06_Collections.Classes
 {
@@ -34,7 +35,7 @@ namespace Lab06_Collections.Classes
         /// </summary>
         /// <param name="card">Card instance to remove</param>
         /// <returns>Deck of cards without the removed card</returns>
-        public T[] RemoveFromDeck(Card card)
+        public T[] RemoveFromDeck(T card)
         {
             Type t = card.GetType();
             PropertyInfo value = t.GetProperty("Value");
@@ -85,6 +86,17 @@ namespace Lab06_Collections.Classes
 
             return cardsOfSameSuit;
         }
+
+        /// <summary>
+        /// Helper method to test whether T[] cards has a card I am looking for.
+        /// </summary>
+        /// <returns>true or false</returns>
+        public bool Contains(Card card)
+        {
+            Card[] listCards = (Card[])Convert.ChangeType(cards, typeof(Card[]));
+            return listCards.Contains(card);
+        }
+
 
         public IEnumerator<T> GetEnumerator()
         {
