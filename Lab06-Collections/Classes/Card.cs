@@ -25,6 +25,9 @@ namespace Lab06_Collections.Classes
         }
     }
 
+    /// <summary>
+    /// Enum of card suits, in order of strength.
+    /// </summary>
     public enum CardSuits
     {
         Diamonds,
@@ -33,6 +36,9 @@ namespace Lab06_Collections.Classes
         Spades,
     }
 
+    /// <summary>
+    /// Enum of card values in order of power.
+    /// </summary>
     public enum CardValues
     {
         One,
