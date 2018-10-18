@@ -97,6 +97,11 @@ namespace Lab06_Collections.Classes
             return listCards.Contains(card);
         }
 
+        public int Count()
+        {
+            return cards.Where(x => x != null).Count();
+        }
+
 
         public IEnumerator<T> GetEnumerator()
         {

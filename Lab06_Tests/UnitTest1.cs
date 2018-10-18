@@ -29,8 +29,27 @@ namespace Lab06_Tests
         Deck<Card> deckOfCards = new Deck<Card>();
 
         [Fact]
+        public void AddToDeck()
+        {
+            deckOfCards.AddToDeck(card2);
+            bool isContained = deckOfCards.Contains(card2);
+            Assert.True(isContained);
+        }
+
+        [Fact]
         public void RemoveFromDeck()
         {
+            deckOfCards.AddToDeck(card2);
+            deckOfCards.AddToDeck(card3);
+            deckOfCards.AddToDeck(card4);
+
+            deckOfCards.RemoveFromDeck(card3);
+
+            bool isContained = deckOfCards.Contains(card3);
+            int numberOfCardsLeft = deckOfCards.Count();
+
+            Assert.False(isContained);
+            Assert.Equal(2, numberOfCardsLeft);
         }
     }
 }
