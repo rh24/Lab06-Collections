@@ -7,10 +7,7 @@ using System.Linq;
 //Tests
 //Your tests should cover the following functionality:
 
-//Add a card to your deck
 //Getter/Setters of your properties from your Card class
-//Remove a card from your deck that exists
-//Remove a card from your deck that does not exist
 
 namespace Lab06_Tests
 {
@@ -28,6 +25,32 @@ namespace Lab06_Tests
 
         Deck<Card> deckOfCards = new Deck<Card>();
 
+
+        /// <summary>
+        /// Tests that I can grab the Card instance's Suit property which is set by an enum, a set of named constants, called CardSuits.
+        /// </summary>
+        [Fact]
+        public void TestGetter()
+        {
+            CardSuits cardSuitProperty = card2.Suit;
+            Assert.IsType<CardSuits>(cardSuitProperty);
+        }
+
+        /// <summary>
+        /// Tests that the current card4's value, CardValues.Ten, can be reset to CardValues.Ace.
+        /// </summary>
+        [Fact]
+        public void TestSetter()
+        {
+            CardValues currentCard4Value = card4.Value;
+            card4.Value = CardValues.Ace;
+
+            Assert.NotEqual(currentCard4Value, card4.Value);
+        }
+
+        /// <summary>
+        /// Test that a card is added and contained in deck.
+        /// </summary>
         [Fact]
         public void AddToDeck()
         {
@@ -36,8 +59,12 @@ namespace Lab06_Tests
             Assert.True(isContained);
         }
 
+
+        /// <summary>
+        /// Remove a card that does exist. Verify that the remaining cards are correct number of cards left in collection. 
+        /// </summary>
         [Fact]
-        public void RemoveFromDeck()
+        public void RemoveExistingCardFromDeck()
         {
             deckOfCards.AddToDeck(card2);
             deckOfCards.AddToDeck(card3);
@@ -50,6 +77,24 @@ namespace Lab06_Tests
 
             Assert.False(isContained);
             Assert.Equal(2, numberOfCardsLeft);
+        }
+
+        /// <summary>
+        /// If a card does not exist in the deck, no item will have been removed, and the deck of cards will remain untouched. Test that the returned deck after removing non-existing card has the same number of cards as the original deck.
+        /// </summary>
+        [Fact]
+        public void RemoveNonExistingCardFromDeck()
+        {
+            deckOfCards.AddToDeck(card6);
+            deckOfCards.AddToDeck(card7);
+
+            int originalCount = deckOfCards.Count();
+
+            deckOfCards.RemoveFromDeck(card5);
+
+            int newCount = deckOfCards.Count();
+
+            Assert.Equal(originalCount, newCount);
         }
     }
 }
