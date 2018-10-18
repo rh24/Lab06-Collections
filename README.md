@@ -6,6 +6,12 @@ Collections are useful because they are dynamic in size. They are another way fo
 
 ## Sample View
 
+![deck_console_output](https://github.com/rh24/Lab06-Collections/blob/RebeccaHong-Lab06/assets/DeckOfCards.png)
+
 ## Contributing
 
+Bug reports and pull requests are welcome on GitHub at https://github.com/rh24/Lab06-Collections. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
 ## License
+
+This project is licensed under the MIT license.
