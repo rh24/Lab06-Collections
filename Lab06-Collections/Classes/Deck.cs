@@ -31,7 +31,7 @@ namespace Lab06_Collections.Classes
         }
 
         /// <summary>
-        /// This method removes a card from the deck.
+        /// This method removes a card from the deck. Break after removing 1 matching card. I did this because I wanted to play around with getting the properties of objects that are a generic type.
         /// </summary>
         /// <param name="card">Card instance to remove</param>
         /// <returns>Deck of cards without the removed card</returns>
@@ -49,8 +49,27 @@ namespace Lab06_Collections.Classes
                     bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
 
                     // if property of generic type object == property of generic type in card deck
-                    if (equalValues && equalSuits) cards.SetValue(null, i);
+                    if (equalValues && equalSuits)
+                    {
+                        cards.SetValue(null, i);
+                        break;
+                    }
                 }
+            }
+
+            return cards;
+        }
+
+        /// <summary>
+        /// Remove a card from deck with .Equals that compares two objects.
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
+        public T[] RemoveByObjectEqualsFromDeck(T card)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (cards[i].Equals(card)) cards.SetValue(null, i);
             }
 
             return cards;
