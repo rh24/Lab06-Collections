@@ -25,6 +25,7 @@ namespace Lab06_Collections.Classes
             cards[count++] = card;
         }
 
+        /*
         public T[] RemoveFromDeck(T card)
         {
             Type t = card.GetType();
@@ -35,6 +36,34 @@ namespace Lab06_Collections.Classes
             {
                 bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
                 bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+
+                Console.WriteLine(value.GetValue(card).ToString() + value.GetValue(cards[i]).ToString());
+                Console.WriteLine(suit.GetValue(card).ToString() + suit.GetValue(cards[i]).ToString());
+
+                // if property of generic type object == property of generic type in card deck
+                if (equalValues && equalSuits)
+                {
+                    cards.SetValue(null, i);
+                    Console.WriteLine("Yay the strings are equal!");
+                }
+            }
+
+            return cards;
+        }
+        */
+
+        public T[] RemoveFromDeck(Card card)
+        {
+            Type t = card.GetType();
+            PropertyInfo value = t.GetProperty("Value");
+            PropertyInfo suit = t.GetProperty("Suit");
+
+            for (int i = 0; i < cards.Length; i++)
+            {
+                bool equalValues = string.Equals(value.GetValue(card).ToString(), value.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+                bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+                //Console.WriteLine(value.GetValue(card).ToString() + value.GetValue(cards[i]).ToString());
+                //Console.WriteLine(suit.GetValue(card).ToString() + suit.GetValue(cards[i]).ToString());
 
                 // if property of generic type object == property of generic type in card deck
                 if (equalValues && equalSuits)
@@ -58,13 +87,15 @@ namespace Lab06_Collections.Classes
 
             for (int i = 0; i < cards.Length; i++)
             {
-                Type cT = cards[i].GetType();
-                PropertyInfo cVal = t.GetProperty("Value");
-                PropertyInfo cSuit = t.GetProperty("Suit");
-                if (cSuit == suit)
+                if (cards[i] != null)
                 {
-                    cardsOfSameSuit[counter] = cards[i];
-                    counter++;
+                    bool equalSuits = string.Equals(suit.GetValue(card).ToString(), suit.GetValue(cards[i]).ToString(), StringComparison.CurrentCultureIgnoreCase);
+
+                    if (equalSuits)
+                    {
+                        cardsOfSameSuit[counter] = cards[i];
+                        counter++;
+                    }
                 }
             }
 
